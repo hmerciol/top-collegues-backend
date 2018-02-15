@@ -1,6 +1,7 @@
 package dev.webapp.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,8 @@ public class ColleguesController {
 
 	@GetMapping
 	public List<Collegue> listerCollegues() {
-		return colRepo.findAll();
+		return colRepo.findAll().stream().sorted((col1, col2) -> col2.getScore() - col1.getScore())
+				.collect(Collectors.toList());
 	}
 
 	@PostMapping
@@ -60,7 +62,7 @@ public class ColleguesController {
 	@DeleteMapping(path = "/{pseudo}")
 	public Collegue supprimerCollegue(@PathVariable String pseudo) {
 		Collegue collegue = colRepo.findOne(pseudo);
-		if(collegue != null) {
+		if (collegue != null) {
 			colRepo.delete(collegue);
 		}
 		return collegue;
