@@ -42,7 +42,7 @@ public class ColleguesController {
 			colRepo.save(newCol);
 			return ResponseEntity.status(HttpStatus.CREATED).body(newCol);
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCol);
 	}
 
 	@PatchMapping(path = "/{pseudo}")
