@@ -32,8 +32,7 @@ public class ColleguesController {
 
 	@GetMapping
 	public List<Collegue> listerCollegues() {
-		return colRepo.findAll().stream().sorted((col1, col2) -> col2.getScore() - col1.getScore())
-				.collect(Collectors.toList());
+		return colRepo.findAll();
 	}
 
 	@PostMapping
