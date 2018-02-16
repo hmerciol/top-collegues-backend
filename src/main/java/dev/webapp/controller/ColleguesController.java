@@ -35,6 +35,11 @@ public class ColleguesController {
 		return colRepo.findAll();
 	}
 
+	@GetMapping(path = "/{pseudo}")
+	public Collegue trouverCollegue(@PathVariable String pseudo) {
+		return colRepo.findOne(pseudo);
+	}
+
 	@PostMapping
 	public ResponseEntity<Collegue> creerCollegue(@RequestBody Collegue newCol) {
 		if (colVal.valider(newCol)) {
