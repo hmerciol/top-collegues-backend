@@ -1,7 +1,6 @@
 package dev.webapp.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.webapp.entity.Collegue;
+import dev.webapp.entity.Vote;
 import dev.webapp.repository.CollegueRepository;
 import dev.webapp.service.CollegueValidator;
+import dev.webapp.service.HistoriqueVotes;
 
 @RestController
 @CrossOrigin
@@ -29,6 +30,8 @@ public class ColleguesController {
 	private CollegueRepository colRepo;
 	@Autowired
 	private CollegueValidator colVal;
+	@Autowired
+	private HistoriqueVotes histoVotes;
 
 	@GetMapping
 	public List<Collegue> listerCollegues() {
@@ -57,10 +60,13 @@ public class ColleguesController {
 		}
 		if (action.contains("aimer")) {
 			collegue.setScore(collegue.getScore() + 10);
+			action="aimer";
 		}
 		if (action.contains("detester")) {
 			collegue.setScore(collegue.getScore() - 5);
+			action="detester";
 		}
+		histoVotes.newVote(new Vote(collegue, action));
 		colRepo.save(collegue);
 		return collegue;
 	}
