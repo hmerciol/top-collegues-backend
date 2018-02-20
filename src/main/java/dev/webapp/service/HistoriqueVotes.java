@@ -33,5 +33,11 @@ public class HistoriqueVotes {
 			return historique.subList(historique.size()-3, historique.size());
 		}
 	}
+	
+	public Vote delete(Integer voteId) {
+		Vote delVote = historique.stream().filter(v -> v.getId().intValue() == voteId.intValue()).findFirst().orElse(null);
+		historique.remove(delVote);
+		return delVote;
+	}
 
 }
