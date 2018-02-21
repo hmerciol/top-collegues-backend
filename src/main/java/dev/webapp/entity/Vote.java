@@ -15,6 +15,7 @@ public class Vote {
 	@ManyToOne
 	private Collegue collegue;
 	private String avis;
+	private int score;
 	
 	/**
 	 * 
@@ -27,10 +28,11 @@ public class Vote {
 	 * @param collegue
 	 * @param avis
 	 */
-	public Vote(Collegue collegue, String avis) {
+	public Vote(Collegue collegue, String avis, int score) {
 		super();
 		this.collegue = collegue;
 		this.avis = avis;
+		this.score = score;
 	}
 
 	/**
@@ -79,6 +81,22 @@ public class Vote {
 	 */
 	public void setAvis(String avis) {
 		this.avis = avis;
+	}
+
+	/**
+	 * Getter for the score
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * Setter for the score
+	 * @param score the score to set
+	 */
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }

@@ -66,7 +66,7 @@ public class ColleguesController {
 			collegue.setScore(collegue.getScore() - 5);
 			action="detester";
 		}
-		histoVotes.newVote(new Vote(collegue, action));
+		histoVotes.newVote(new Vote(collegue, action, collegue.getScore()));
 		colRepo.save(collegue);
 		return collegue;
 	}
